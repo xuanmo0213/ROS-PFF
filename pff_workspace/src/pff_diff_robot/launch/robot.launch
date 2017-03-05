@@ -1,0 +1,50 @@
+<launch>
+
+    <!-- ARGS -->
+
+   
+
+    <arg name="rviz_config" default="$(find pff_diff_robot)/config/model.rviz" />
+    <arg name="model" default="$(find pff_diff_robot)/config/diff_robot.urdf"/>
+    <arg name="setmode" default="keyboard" />
+    <arg name="setsize" default="1.0" />
+    <arg name="rate" default="1.0" />
+
+    <!-- PARAMS -->
+    <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
+    <param name="mode" value="$(arg setmode)" />
+    <param name="size" value="$(arg setsize)" />
+
+    <!-- NODES -->
+
+
+    <node name="pff_diff_robot"
+          pkg="pff_diff_robot"
+          type="pff_diff_robot.py"
+          output="screen"
+          required="true" />
+    
+
+    <node name="robot_state_publisher"
+          pkg="robot_state_publisher"
+          type="state_publisher" />
+
+    <node name="rviz"
+          pkg="rviz"
+          type="rviz"
+          args="-d $(arg rviz_config)"
+	  required="true" />
+
+    <node name="teleop_twist_keyboard"
+          pkg="teleop_twist_keyboard"
+          type="teleop_twist_keyboard.py"
+          output="screen"
+          required="false"/>
+
+
+
+
+    
+
+</launch>
+

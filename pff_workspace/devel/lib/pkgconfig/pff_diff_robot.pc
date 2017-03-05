@@ -1,0 +1,8 @@
+prefix=/home/mo/pff_workspace/devel
+
+Name: pff_diff_robot
+Description: Description of pff_diff_robot
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/mo/pff_workspace/devel/lib 
+Requires: 
