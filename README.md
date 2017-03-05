@@ -17,4 +17,15 @@ Contains a launcher to simulate the robot and allows for the following functiona
 ```
 Simulation with Gazebo not available.
 
+Here are demo for three modes.
+
+# 1 Keyboard Mode
+![Alt text](gif/keyboard.gif?raw=true "Keyboard Mode")
+
+# 2 Circle Mode
+![Alt text](gif/circle.gif?raw=true "Circle Mode")
+
+# 3 Square Mode
+![Alt text](gif/square.gif?raw=true "Square Mode")
+
 ## [See Package README](pff_workspace/src/README.md)
