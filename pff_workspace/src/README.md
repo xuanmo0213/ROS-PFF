@@ -34,6 +34,8 @@ https://github.com/xuanmo0213/ROS-PFF.git
 cd pff-workspace;
 catkin_make;
 source ./devel/setup.bash
+catkin_make install;
+source ./install/setup.bash
 ```
 
 ### 1.4 Run The Node
