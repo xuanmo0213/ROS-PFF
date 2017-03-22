@@ -22,13 +22,10 @@ class DiffRobot:
     #-----------------#
         rospy.init_node("diff_robot")
         self.nodename = rospy.get_name()
-        rospy.loginfo("--INIT ROBOT: %s started --" % self.nodename)
-        
         #-- parameters --#
 	self.mode = rospy.get_param('mode',"keyboard")
-	rospy.loginfo("--INIT ROBOT: %s mode selected --" % self.mode)
 	self.size = rospy.get_param('size',1.0)
-	rospy.loginfo("--INIT ROBOT: size %s selected --" % self.size)
+	rospy.loginfo("--INIT ROBOT: %s started, %s mode selected, size %s selected --\n" % (self.nodename, self.mode, self.size))
         self.rate = rospy.get_param('rate',1.0)  # the rate for publishing the transform
 	self.t_delta = rospy.Duration(1.0/self.rate)
         self.t_next = rospy.Time.now() + self.t_delta
@@ -100,8 +97,15 @@ class DiffRobot:
 		self.th = th_label[self.count]
 		self.count += 1
 		
-		
-            self.odomBroadcaster.sendTransform(
+	    if self.mode == "circle":
+		self.odomBroadcaster.sendTransform(
+                	(self.x, self.y, 0),
+                	tf.transformations.quaternion_from_euler(0,0,pi/2 + self.th), 
+                	rospy.Time.now(),
+                	"base_link",
+                	"map"
+                	)
+            else: self.odomBroadcaster.sendTransform(
                 (self.x, self.y, 0),
                 (0, 0, sin( self.th/2),cos( self.th/2)), 
                 rospy.Time.now(),
